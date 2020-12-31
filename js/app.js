@@ -20,7 +20,7 @@
 let observer;
 const navbar = document.getElementById("navbar__list");
 const unorderedList = document.getElementById("navbar__list");
-let sectionCount = 3;
+let sectionCount = 4;
 
 /**
  * End Global Variables
@@ -35,12 +35,15 @@ let sectionCount = 3;
 function callback (entries, observer) {
     entries.forEach(entry => {
         let section = entry.target;
+        const navItem = document.getElementsByClassName(section.id)[0];
         
         if (entry.isIntersecting) {
             section.classList.add("your-active-class");
+            navItem.classList.add("active-list-item");
         }
         else {
             section.classList.remove("your-active-class");
+            navItem.classList.remove("active-list-item");
         }
     });
 }
@@ -51,8 +54,9 @@ function updateNav(elem) {
     listItem.textContent = elem.getAttribute("data-nav");
     listItem.className = "menu__link";
         
-    //set ID data for scrolling on click
-    listItem.setAttribute("data-id", elem.id);
+    //set ID as class for scrolling on click
+    //listItem.setAttribute("data-id", elem.id);
+    listItem.classList.add(elem.id);
 
     unorderedList.appendChild(listItem);
 }
@@ -110,7 +114,7 @@ function setTargets() {
 
 // Scroll to anchor ID using scrollTO event
 function scrollIntoView(event) {
-    const targetID = event.target.getAttribute("data-id");
+    const targetID = event.target.classList[1];
     const target = document.getElementById(targetID);
     
     //offset the scroll position by the height of the navbar

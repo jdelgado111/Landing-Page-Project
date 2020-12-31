@@ -221,3 +221,7 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+.active-list-item {
+    background-color: darkcyan;
+}
